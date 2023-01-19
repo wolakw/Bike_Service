@@ -26,18 +26,18 @@ public class LoginView extends VerticalLayout {
                 new H1("Welcome"),
                 username,
                 password,
-                new Button("Login", event ->{
+                new Button("Login", event -> {
                     try {
                         authService.authenticate(username.getValue(), password.getValue());
                         UI.getCurrent().navigate("view");
                     } catch (AuthService.AuthException e) {
                         Notification.show("Wrong data");
                     }
-                })
+                }),
+                new RouterLink("Register", RegisterView.class)
         );
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
         setSizeFull();
     }
-
 }

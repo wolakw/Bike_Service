@@ -25,12 +25,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
-
-    @Email
-    private String mail;
+//    private String firstName;
+//
+//    private String lastName;
+//
+//    @Email
+//    private String mail;
 
     private String username;
 
@@ -50,6 +50,4 @@ public class User {
     public  boolean checkPassword(String password) {
         return DigestUtils.sha1Hex(password + passwordSalt).equals(passwordHash);
     }
-
-
 }
