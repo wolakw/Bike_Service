@@ -19,6 +19,8 @@ public class RegisterView extends Composite {
         this.authService = authService;
     }
 
+    TextField firstName = new TextField("First name");
+    TextField lastName = new TextField("Last name");
     TextField username = new TextField("Username");
     PasswordField password1 = new PasswordField("Password");
     PasswordField password2 = new PasswordField("Confirm Password");
@@ -27,10 +29,14 @@ public class RegisterView extends Composite {
     protected Component initContent() {
         return new VerticalLayout(
                 new H2("Register"),
+                firstName,
+                lastName,
                 username,
                 password1,
                 password2,
                 new Button("Send", event -> register(
+                        firstName.getValue(),
+                        lastName.getValue(),
                         username.getValue(),
                         password1.getValue(),
                         password2.getValue()
@@ -38,7 +44,7 @@ public class RegisterView extends Composite {
         );
     }
 
-    private void register(String username, String password1, String password2) {
+    private void register(String firstname, String lastname, String username, String password1, String password2) {
         if (username.trim().isEmpty()) {
             Notification.show("Enter username");
         } else if (password1.isEmpty()) {
@@ -46,7 +52,7 @@ public class RegisterView extends Composite {
         } else if (!password1.equals(password2)) {
             Notification.show("Password don't match");
         } else {
-            authService.register(username, password1);
+            authService.register(firstname, lastname, username, password1);
             Notification.show("Registration succeeded");
         }
     }

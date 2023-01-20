@@ -71,7 +71,7 @@ public class AuthService {
         return routes;
     }
 
-    public void register(String username, String password) {
-        userRepository.save(new User(username, password, Role.USER));
+    public void register(String firstname, String lastname, String username, String password) {
+        userRepository.save(new User(firstname, lastname, username, password, Role.USER));
     }
 }

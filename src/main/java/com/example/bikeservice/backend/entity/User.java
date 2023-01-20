@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 
 @Data
 @NoArgsConstructor
@@ -25,12 +24,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    private String firstName;
-//
-//    private String lastName;
-//
-//    @Email
-//    private String mail;
+    private String firstName;
+
+    private String lastName;
 
     private String username;
 
@@ -40,7 +36,9 @@ public class User {
 
     private Role role;
 
-    public User(String username, String password, Role role) {
+    public User(String firstName, String lastName, String username, String password, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.role = role;
         this.passwordSalt = RandomStringUtils.random(32);
@@ -49,6 +47,22 @@ public class User {
 
     public  boolean checkPassword(String password) {
         return DigestUtils.sha1Hex(password + passwordSalt).equals(passwordHash);
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
