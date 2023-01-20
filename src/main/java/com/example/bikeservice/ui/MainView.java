@@ -44,14 +44,14 @@ public class MainView extends AppLayout {
     private Component createHeaderContent() {
         HorizontalLayout layout = new HorizontalLayout();
         layout.setId("header");
-        layout.getThemeList().set("dark", true);
+        //layout.getThemeList().set("dark", true);
         layout.setWidthFull();
         layout.setSpacing(false);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         layout.add(new DrawerToggle());
         viewTitle = new H1();
         layout.add(viewTitle);
-        layout.add(new Image("images/user.svg", "Avatar"));
+        layout.add(new Image("images/logo1.png", "logo1"));
         return layout;
     }
 
@@ -65,8 +65,8 @@ public class MainView extends AppLayout {
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        logoLayout.add(new Image("images/logo.png", "auth-example logo"));
-        logoLayout.add(new H1("auth-example"));
+        //logoLayout.add(new Image("images/logo.png", "wolszyn logo"));
+        logoLayout.add(new H1("Menu"));
         layout.add(logoLayout, menu);
         return layout;
     }

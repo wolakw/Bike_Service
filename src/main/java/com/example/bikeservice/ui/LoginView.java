@@ -7,6 +7,7 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -26,7 +27,7 @@ public class LoginView extends VerticalLayout {
                 new H1("Welcome"),
                 username,
                 password,
-                new Button("Login", event -> {
+                new HorizontalLayout(new Button("Log in", event -> {
                     try {
                         authService.authenticate(username.getValue(), password.getValue());
                         UI.getCurrent().navigate("home");
@@ -34,7 +35,10 @@ public class LoginView extends VerticalLayout {
                         Notification.show("Wrong data");
                     }
                 }),
-                new RouterLink("Register", RegisterView.class)
+                        new Button("Register", event -> {
+                            UI.getCurrent().navigate("register");
+                        }))
+
         );
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);

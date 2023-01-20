@@ -3,56 +3,69 @@ package com.example.bikeservice.ui;
 import com.example.bikeservice.backend.service.AuthService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route("register")
-public class RegisterView extends Composite {
+public class RegisterView extends VerticalLayout {
     private final AuthService authService;
-
-    public RegisterView(AuthService authService) {
-        this.authService = authService;
-    }
-
     TextField firstName = new TextField("First name");
     TextField lastName = new TextField("Last name");
     TextField username = new TextField("Username");
     PasswordField password1 = new PasswordField("Password");
     PasswordField password2 = new PasswordField("Confirm Password");
 
-
-    protected Component initContent() {
-        return new VerticalLayout(
+    public RegisterView(AuthService authService) {
+        this.authService = authService;
+        add(
                 new H2("Register"),
-                firstName,
-                lastName,
+                new HorizontalLayout(firstName, lastName),
+                new HorizontalLayout(password1, password2),
                 username,
-                password1,
-                password2,
-                new Button("Send", event -> register(
+                new HorizontalLayout(new Button("Register", event -> register(
                         firstName.getValue(),
                         lastName.getValue(),
                         username.getValue(),
                         password1.getValue(),
                         password2.getValue()
-                ))
+                )),new Button("Log in", event -> {
+                    UI.getCurrent().navigate("login");
+                }))
         );
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        setSizeFull();
+    }
+
+    private void setClear() {
+        firstName.setValue("");
+        lastName.setValue("");
+        password1.setValue("");
+        password2.setValue("");
+        username.setValue("");
     }
 
     private void register(String firstname, String lastname, String username, String password1, String password2) {
-        if (username.trim().isEmpty()) {
-            Notification.show("Enter username");
+        if (firstname.isEmpty()) {
+            Notification.show("Enter first name");
+        } else if (lastname.trim().isEmpty()) {
+            Notification.show("Enter last name");
         } else if (password1.isEmpty()) {
             Notification.show("Enter password");
         } else if (!password1.equals(password2)) {
             Notification.show("Password don't match");
+        } else if (username.trim().isEmpty()) {
+            Notification.show("Enter username");
         } else {
             authService.register(firstname, lastname, username, password1);
+            setClear();
             Notification.show("Registration succeeded");
         }
     }
