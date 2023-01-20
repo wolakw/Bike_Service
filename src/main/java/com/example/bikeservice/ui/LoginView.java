@@ -29,7 +29,7 @@ public class LoginView extends VerticalLayout {
                 new Button("Login", event -> {
                     try {
                         authService.authenticate(username.getValue(), password.getValue());
-                        UI.getCurrent().navigate("view");
+                        UI.getCurrent().navigate("home");
                     } catch (AuthService.AuthException e) {
                         Notification.show("Wrong data");
                     }

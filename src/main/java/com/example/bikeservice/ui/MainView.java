@@ -1,4 +1,4 @@
-package com.example.bikeservice;
+package com.example.bikeservice.ui;
 
 import java.util.Optional;
 

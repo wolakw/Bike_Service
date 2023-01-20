@@ -1,6 +1,5 @@
-package com.example.bikeservice.ui;
+package com.example.bikeservice.ui.admin;
 
-import com.example.bikeservice.MainView;
 import com.example.bikeservice.backend.entity.User;
 import com.example.bikeservice.backend.service.UserService;
 import com.vaadin.flow.component.html.H1;
@@ -11,9 +10,9 @@ import org.vaadin.crudui.crud.impl.GridCrud;
 
 @Route(value = "view")
 @PageTitle("View")
-public class View extends VerticalLayout {
+public class AdminView extends VerticalLayout {
 
-    public View(UserService service) {
+    public AdminView(UserService service) {
         var crud = new GridCrud<>(User.class, service);
         //crud.getGrid().setColumns("firstName", "lastName", "mail");
         //crud.getCrudFormFactory().setVisibleProperties("firstName", "lastName", "mail");
