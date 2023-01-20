@@ -20,9 +20,7 @@ public class UserService implements CrudListener<User> {
     }
 
     @Override
-    public User add(User client) {
-        return repository.save(client);
-    }
+    public User add(User client) { return repository.save(client); }
 
     @Override
     public User update(User client) {
