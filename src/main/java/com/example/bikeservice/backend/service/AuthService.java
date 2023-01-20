@@ -52,10 +52,10 @@ public class AuthService {
             routes.add(new AuthorizedRoute("view", "View", View.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         } else if (role.equals(Role.EMP)) {
-            routes.add(new AuthorizedRoute("view", "View", View.class));
+            //routes.add(new AuthorizedRoute("view", "View", View.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         } else {
-            routes.add(new AuthorizedRoute("view", "View", View.class));
+            //routes.add(new AuthorizedRoute("view", "View", View.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
         return routes;
