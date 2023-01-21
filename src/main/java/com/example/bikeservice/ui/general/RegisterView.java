@@ -5,7 +5,9 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -25,7 +27,8 @@ public class RegisterView extends VerticalLayout {
     public RegisterView(AuthService authService) {
         this.authService = authService;
         add(
-                new H2("Register"),
+                new Image("images/logo1.png", "logo1"),
+                new H1("Register"),
                 new HorizontalLayout(firstName, lastName),
                 new HorizontalLayout(password1, password2),
                 username,

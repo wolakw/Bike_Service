@@ -8,8 +8,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -20,7 +18,6 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
-
 import com.vaadin.flow.server.VaadinSession;
 
 
@@ -36,23 +33,30 @@ public class MainView extends AppLayout {
     public MainView(AuthService authService) {
         this.authService = authService;
         setPrimarySection(Section.DRAWER);
-        addToNavbar(true, createHeaderContent());
+        //addToNavbar(true, createHeaderContent());
+        createHeader();
         menu = createMenu();
         addToDrawer(createDrawerContent(menu));
     }
 
-    private Component createHeaderContent() {
-        HorizontalLayout layout = new HorizontalLayout();
-        layout.setId("header");
-        //layout.getThemeList().set("dark", true);
-        layout.setWidthFull();
-        layout.setSpacing(false);
-        layout.setAlignItems(FlexComponent.Alignment.CENTER);
-        layout.add(new DrawerToggle());
+    private void createHeader() {
+        H1 space = new H1("");
+        space.addClassNames("text-l", "m-m");
+
+        Image baner = new Image("images/logo1.png", "logo");
+
         viewTitle = new H1();
-        layout.add(viewTitle);
-        layout.add(new Image("images/logo1.png", "logo1"));
-        return layout;
+
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), viewTitle, space, baner);
+
+        header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+        header.expand(space);
+
+        header.setWidth("100%");
+        header.addClassNames("py-0", "px-m");
+
+        addToNavbar(true, header);
+
     }
 
     private Component createDrawerContent(Tabs menu) {
@@ -65,9 +69,10 @@ public class MainView extends AppLayout {
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        //logoLayout.add(new Image("images/logo.png", "wolszyn logo"));
-        logoLayout.add(new H1("Menu"));
+        H1 text = new H1("Menu");
+        logoLayout.add(text);
         layout.add(logoLayout, menu);
+        layout.setAlignSelf(FlexComponent.Alignment.CENTER, logoLayout);
         return layout;
     }
 
