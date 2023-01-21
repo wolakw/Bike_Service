@@ -9,8 +9,9 @@ import com.example.bikeservice.ui.general.LogoutView;
 import com.example.bikeservice.ui.admin.AdminView;
 import com.example.bikeservice.ui.admin.AllOrderView;
 import com.example.bikeservice.ui.admin.ServiceView;
-import com.example.bikeservice.ui.emp.OrderView;
-import com.example.bikeservice.ui.user.UserView;
+import com.example.bikeservice.ui.emp.EmpOrderView;
+import com.example.bikeservice.ui.user.UserOrderView;
+import com.example.bikeservice.ui.user.MakeOrderView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.server.VaadinSession;
@@ -55,21 +56,20 @@ public class AuthService {
 
         if (role.equals(Role.ADMIN)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
+            routes.add(new AuthorizedRoute("adminusers", "Users", AdminView.class));
+            routes.add(new AuthorizedRoute("adminorder", "Orders", AllOrderView.class));
             routes.add(new AuthorizedRoute("service", "Service", ServiceView.class));
-            routes.add(new AuthorizedRoute("allorder", "Orders", AllOrderView.class));
-            routes.add(new AuthorizedRoute("view", "View", AdminView.class));
-            routes.add(new AuthorizedRoute("orderview", "Order view", OrderView.class));
-            routes.add(new AuthorizedRoute("userview", "User view", UserView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
         if (role.equals(Role.EMP)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
-            routes.add(new AuthorizedRoute("orderview", "Order view", OrderView.class));
+            routes.add(new AuthorizedRoute("emporderview", "Orders", EmpOrderView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
-            routes.add(new AuthorizedRoute("userview", "User view", UserView.class));
+            routes.add(new AuthorizedRoute("makeorderview", "Make order", MakeOrderView.class));
+            routes.add(new AuthorizedRoute("userorderview", "Orders", UserOrderView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
         return routes;

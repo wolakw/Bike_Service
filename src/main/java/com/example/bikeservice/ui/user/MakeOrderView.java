@@ -12,9 +12,9 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.button.Button;
 
-@Route(value = "userview")
-@PageTitle("User view")
-public class UserView extends VerticalLayout {
+@Route(value = "makeorderview")
+@PageTitle("Make order")
+public class MakeOrderView extends VerticalLayout {
 
     private final OrderService orderService;
 
@@ -26,7 +26,7 @@ public class UserView extends VerticalLayout {
 
 
 
-    public UserView(OrderService service, UserRepository userRepository) {
+    public MakeOrderView(OrderService service, UserRepository userRepository) {
         this.orderService = service;
         this.userRepository = userRepository;
         add (

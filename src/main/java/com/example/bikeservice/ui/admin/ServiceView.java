@@ -10,9 +10,9 @@ import org.vaadin.crudui.crud.impl.GridCrud;
 @Route(value = "service")
 @PageTitle("Service")
 public class ServiceView extends VerticalLayout {
-
     public ServiceView(JobService service) {
         var crud = new GridCrud<>(Job.class, service);
+        crud.getCrudFormFactory().setVisibleProperties("name", "price");
         add(crud);
     }
 }

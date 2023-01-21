@@ -11,14 +11,15 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import org.vaadin.crudui.crud.impl.GridCrud;
 
-import java.util.ArrayList;
-import java.util.List;
 
-@Route(value = "allorder")
+@Route(value = "adminorder")
 @PageTitle("Orders")
 public class AllOrderView extends VerticalLayout {
     public AllOrderView(OrderService service) {
         var crud = new GridCrud<>(CustomerOrder.class, service);
+        crud.setAddOperationVisible(false);
+        crud.getGrid().setColumns("id", "name", "client", "employee", "orderDate", "pickupDate", "status");
+        crud.getCrudFormFactory().setVisibleProperties("name", "client", "employee", "pickupDate", "status");
         add(crud);
     }
 }

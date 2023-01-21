@@ -35,6 +35,7 @@ public class CustomerOrder {
         this.name = name;
         this.status = status;
         this.client = client;
+        this.employee = "Not assigned";
         this.orderDate = LocalDate.now();
         this.pickupDate = LocalDate.now().plusDays(5);
     }

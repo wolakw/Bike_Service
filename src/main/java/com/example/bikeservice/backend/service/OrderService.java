@@ -4,10 +4,12 @@ import com.example.bikeservice.backend.entity.CustomerOrder;
 import com.example.bikeservice.backend.entity.Status;
 import com.example.bikeservice.backend.entity.User;
 import com.example.bikeservice.backend.repository.OrderRepository;
+import com.vaadin.flow.server.VaadinSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.vaadin.crudui.crud.CrudListener;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
@@ -36,5 +38,31 @@ public class OrderService implements CrudListener<CustomerOrder> {
 
     public void newOrder(String name, String user) {
         repository.save(new CustomerOrder(name, Status.SUBMITTED, user));
+    }
+
+    public Collection<CustomerOrder> findAllEmployee() {
+        User user = VaadinSession.getCurrent().getAttribute(User.class);
+        String username = user.getUsername();
+        Collection<CustomerOrder> orders = findAll();
+        Collection<CustomerOrder> orders2 = new ArrayList<>();
+        for (CustomerOrder o : orders) {
+            if(o.getEmployee().equals(username)) {
+                orders2.add(o);
+            }
+        }
+        return orders2;
+    }
+
+    public Collection<CustomerOrder> findAllClients () {
+        User user = VaadinSession.getCurrent().getAttribute(User.class);
+        String username = user.getUsername();
+        Collection<CustomerOrder> orders = findAll();
+        Collection<CustomerOrder> orders2 = new ArrayList<>();
+        for (CustomerOrder o : orders) {
+            if(o.getClient().equals(username)) {
+                orders2.add(o);
+            }
+        }
+        return orders2;
     }
 }
