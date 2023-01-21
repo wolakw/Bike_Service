@@ -1,6 +1,8 @@
 package com.example.bikeservice.backend.service;
 
 import com.example.bikeservice.backend.entity.CustomerOrder;
+import com.example.bikeservice.backend.entity.Status;
+import com.example.bikeservice.backend.entity.User;
 import com.example.bikeservice.backend.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,5 +32,9 @@ public class OrderService implements CrudListener<CustomerOrder> {
     @Override
     public void delete(CustomerOrder order) {
         repository.delete(order);
+    }
+
+    public void newOrder(String name, String user) {
+        repository.save(new CustomerOrder(name, Status.SUBMITTED, user));
     }
 }

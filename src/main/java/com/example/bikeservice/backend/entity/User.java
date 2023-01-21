@@ -8,6 +8,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class User {
     private String passwordHash;
 
     private Role role;
+
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+//    private  List<CustomerOrder> orders;
 
     public User(String firstName, String lastName, String username, String password, Role role) {
         this.firstName = firstName;

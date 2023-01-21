@@ -21,18 +21,32 @@ public class CustomerOrder {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="clientId",referencedColumnName="username", insertable=false, updatable=false)
-    private User client;
+    private Status status;
 
-//    @ManyToOne
+    private String client;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="clientId",referencedColumnName="username", insertable=false, updatable=false)
+//    private User client;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="employeeId",referencedColumnName="username", insertable=false, updatable=false)
 //    private User employee;
 
-    public CustomerOrder(String name, User client) {
+    public CustomerOrder(String name, Status status, String client) {
         this.name = name;
+        this.status = status;
         this.client = client;
     }
+
+    public CustomerOrder(Long id) {
+        this.id = id;
+    }
+
+//    public CustomerOrder(String name, User client) {
+//        this.name = name;
+//        this.client = client;
+//    }
 
     public String getName() {
         return name;
@@ -42,13 +56,21 @@ public class CustomerOrder {
         this.name = name;
     }
 
-    public User getClient() {
-        return client;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setClient(User client) {
-        this.client = client;
+    public void setStatus(Status status) {
+        this.status = status;
     }
+
+//    public User getClient() {
+//        return client;
+//    }
+//
+//    public void setClient(User client) {
+//        this.client = client;
+//    }
 
 //    public User getEmployee() {
 //        return employee;
@@ -57,4 +79,13 @@ public class CustomerOrder {
 //    public void setEmployee(User employee) {
 //        this.employee = employee;
 //    }
+
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
 }
