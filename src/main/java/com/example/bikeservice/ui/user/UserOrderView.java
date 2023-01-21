@@ -16,7 +16,7 @@ public class UserOrderView extends VerticalLayout {
         crud.setAddOperationVisible(false);
         crud.setDeleteOperationVisible(false);
         crud.setUpdateOperationVisible(false);
-        crud.getGrid().setColumns("id", "name", "client", "employee", "orderDate", "pickupDate", "status");
+        crud.getGrid().setColumns("id", "name","description", "client", "employee", "orderDate", "pickupDate", "status");
         add(crud);
     }
 }

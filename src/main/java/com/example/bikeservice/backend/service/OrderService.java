@@ -36,8 +36,8 @@ public class OrderService implements CrudListener<CustomerOrder> {
         repository.delete(order);
     }
 
-    public void newOrder(String name, String user) {
-        repository.save(new CustomerOrder(name, Status.SUBMITTED, user));
+    public void newOrder(String name, String description, String user) {
+        repository.save(new CustomerOrder(name, description, Status.SUBMITTED, user));
     }
 
     public Collection<CustomerOrder> findAllEmployee() {

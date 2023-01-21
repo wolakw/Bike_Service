@@ -22,6 +22,8 @@ public class CustomerOrder {
 
     private String name;
 
+    private String description;
+
     private Status status;
 
     private String client;
@@ -31,8 +33,9 @@ public class CustomerOrder {
     private LocalDate orderDate;
     private LocalDate pickupDate;
 
-    public CustomerOrder(String name, Status status, String client) {
+    public CustomerOrder(String name, String description, Status status, String client) {
         this.name = name;
+        this.description = description;
         this.status = status;
         this.client = client;
         this.employee = "Not assigned";

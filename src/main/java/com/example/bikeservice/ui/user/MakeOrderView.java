@@ -20,30 +20,41 @@ public class MakeOrderView extends VerticalLayout {
 
     private final UserRepository userRepository;
 
-    //private User user;
-
-    TextField name = new TextField("name");
-
-
+    TextField name = new TextField("Bike name");
+    TextField description = new TextField("Description");
 
     public MakeOrderView(OrderService service, UserRepository userRepository) {
         this.orderService = service;
         this.userRepository = userRepository;
         add (
-                new H1("User view"),
+                new H1("Place an order"),
                 name,
+                description,
                 new Button("Order", event -> makeOrder(
-                        name.getValue()
+                        name.getValue(),
+                        description.getValue()
                 ))
         );
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.START);
+        setSizeFull();
     }
 
-    public void makeOrder(String name) {
+    public void makeOrder(String name, String description) {
         if (name.isEmpty()) {
             Notification.show("Enter name");
-        } else {
+        } else if(description.isEmpty()){
+            Notification.show("Enter description");
+        }else {
             User user = VaadinSession.getCurrent().getAttribute(User.class);
-            orderService.newOrder(name, user.getUsername());
+            orderService.newOrder(name, description, user.getUsername());
+            setClear();
+            Notification.show("Order placed");
         }
+    }
+
+    private void setClear() {
+        name.setValue("");
+        description.setValue("");
     }
 }

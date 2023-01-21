@@ -18,8 +18,8 @@ public class AllOrderView extends VerticalLayout {
     public AllOrderView(OrderService service) {
         var crud = new GridCrud<>(CustomerOrder.class, service);
         crud.setAddOperationVisible(false);
-        crud.getGrid().setColumns("id", "name", "client", "employee", "orderDate", "pickupDate", "status");
-        crud.getCrudFormFactory().setVisibleProperties("name", "client", "employee", "pickupDate", "status");
+        crud.getGrid().setColumns("id", "name","description", "client", "employee", "orderDate", "pickupDate", "status");
+        crud.getCrudFormFactory().setVisibleProperties("name","description", "client", "employee", "pickupDate", "status");
         add(crud);
     }
 }
