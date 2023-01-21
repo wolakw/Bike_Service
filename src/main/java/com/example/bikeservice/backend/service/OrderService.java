@@ -1,6 +1,7 @@
 package com.example.bikeservice.backend.service;
 
 import com.example.bikeservice.backend.entity.CustomerOrder;
+import com.example.bikeservice.backend.entity.Delivery;
 import com.example.bikeservice.backend.entity.Status;
 import com.example.bikeservice.backend.entity.User;
 import com.example.bikeservice.backend.repository.OrderRepository;
@@ -36,8 +37,8 @@ public class OrderService implements CrudListener<CustomerOrder> {
         repository.delete(order);
     }
 
-    public void newOrder(String name, String description, String user) {
-        repository.save(new CustomerOrder(name, description, Status.SUBMITTED, user));
+    public void newOrder(String name, String description, Delivery delivery, String user) {
+        repository.save(new CustomerOrder(name, description, delivery, Status.SUBMITTED, user));
     }
 
     public Collection<CustomerOrder> findAllEmployee() {

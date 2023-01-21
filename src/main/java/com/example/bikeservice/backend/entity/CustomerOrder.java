@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
@@ -24,6 +25,9 @@ public class CustomerOrder {
 
     private String description;
 
+    @ManyToOne
+    private Delivery delivery;
+
     private Status status;
 
     private String client;
@@ -33,9 +37,10 @@ public class CustomerOrder {
     private LocalDate orderDate;
     private LocalDate pickupDate;
 
-    public CustomerOrder(String name, String description, Status status, String client) {
+    public CustomerOrder(String name, String description, Delivery delivery, Status status, String client) {
         this.name = name;
         this.description = description;
+        this.delivery = delivery;
         this.status = status;
         this.client = client;
         this.employee = "Not assigned";

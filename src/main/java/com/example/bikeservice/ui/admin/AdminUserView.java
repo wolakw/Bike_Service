@@ -5,15 +5,14 @@ import com.example.bikeservice.backend.service.UserService;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.VaadinSession;
 import org.vaadin.crudui.crud.impl.GridCrud;
 
 
 @Route(value = "adminusers")
 @PageTitle("Users")
-public class AdminView extends VerticalLayout {
+public class AdminUserView extends VerticalLayout {
 
-    public AdminView(UserService service) {
+    public AdminUserView(UserService service) {
         var crud = new GridCrud<>(User.class);
         crud.setFindAllOperation(service::findAll);
         crud.setAddOperationVisible(false);

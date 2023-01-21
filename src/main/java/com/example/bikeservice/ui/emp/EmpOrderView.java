@@ -16,7 +16,7 @@ public class EmpOrderView extends VerticalLayout {
         crud.setFindAllOperation(service::findAllEmployee);
         crud.setAddOperationVisible(false);
         crud.setDeleteOperationVisible(false);
-        crud.getGrid().setColumns("id", "name","description", "client", "employee", "orderDate", "pickupDate", "status");
+        crud.getGrid().setColumns("id", "name","description", "client", "employee", "orderDate", "pickupDate", "delivery", "status");
         crud.getCrudFormFactory().setVisibleProperties("pickupDate", "status");
         add(crud);
     }
