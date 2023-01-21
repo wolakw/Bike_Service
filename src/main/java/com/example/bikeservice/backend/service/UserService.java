@@ -18,7 +18,6 @@ public class UserService implements CrudListener<User> {
 
     private final UserRepository repository;
 
-
     @Override
     public Collection<User> findAll() {
         return repository.findAll();
@@ -35,6 +34,13 @@ public class UserService implements CrudListener<User> {
     @Override
     public void delete(User user) {
         repository.delete(user);
+    }
+
+    public void editData(User user, String firstname, String lastname, String username) {
+        user.setFirstName(firstname);
+        user.setLastName(lastname);
+        user.setUsername(username);
+        repository.save(user);
     }
 
     public Collection<User> findAllUsername () {

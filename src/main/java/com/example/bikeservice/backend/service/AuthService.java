@@ -8,8 +8,9 @@ import com.example.bikeservice.backend.repository.UserRepository;
 import com.example.bikeservice.ui.general.LogoutView;
 import com.example.bikeservice.ui.admin.AdminUserView;
 import com.example.bikeservice.ui.admin.AdminOrderView;
-import com.example.bikeservice.ui.admin.ServiceView;
+import com.example.bikeservice.ui.admin.AdminView;
 import com.example.bikeservice.ui.emp.EmpOrderView;
+import com.example.bikeservice.ui.user.SettingsView;
 import com.example.bikeservice.ui.user.UserOrderView;
 import com.example.bikeservice.ui.user.MakeOrderView;
 import com.vaadin.flow.component.Component;
@@ -58,18 +59,20 @@ public class AuthService {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
             routes.add(new AuthorizedRoute("adminusers", "Users", AdminUserView.class));
             routes.add(new AuthorizedRoute("adminorder", "Orders", AdminOrderView.class));
-            routes.add(new AuthorizedRoute("service", "Service", ServiceView.class));
+            routes.add(new AuthorizedRoute("admin", "Admin", AdminView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
         if (role.equals(Role.EMP)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
             routes.add(new AuthorizedRoute("emporderview", "Orders", EmpOrderView.class));
+            routes.add(new AuthorizedRoute("settings", "Settings", SettingsView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
             routes.add(new AuthorizedRoute("makeorderview", "Make order", MakeOrderView.class));
             routes.add(new AuthorizedRoute("userorderview", "Orders", UserOrderView.class));
+            routes.add(new AuthorizedRoute("settings", "Settings", SettingsView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
         return routes;
@@ -77,5 +80,10 @@ public class AuthService {
 
     public void register(String firstname, String lastname, String username, String password) {
         userRepository.save(new User(firstname, lastname, username, password, Role.USER));
+    }
+
+    public void changePassword(User user, String password) {
+        user.setNewPassword(password);
+        userRepository.save(user);
     }
 }

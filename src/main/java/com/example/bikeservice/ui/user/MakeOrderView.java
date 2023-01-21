@@ -23,6 +23,7 @@ public class MakeOrderView extends VerticalLayout {
 
     private final OrderService orderService;
     private final UserRepository userRepository;
+    private final DeliveryRepository deliveryRepository;
 
     TextField name = new TextField("Bike name");
     TextField description = new TextField("Description");
@@ -32,6 +33,7 @@ public class MakeOrderView extends VerticalLayout {
     public MakeOrderView(OrderService service, UserRepository userRepository, DeliveryRepository deliveryRepository) {
         this.orderService = service;
         this.userRepository = userRepository;
+        this.deliveryRepository = deliveryRepository;
         List<Delivery> deliveries = deliveryRepository.findAll();
         delivery.setItems(deliveries);
         delivery.setItemLabelGenerator(Delivery::getName);

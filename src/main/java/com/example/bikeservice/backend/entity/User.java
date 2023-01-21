@@ -99,4 +99,9 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public void setNewPassword(String password) {
+        this.passwordSalt = RandomStringUtils.random(32);
+        this.passwordHash = DigestUtils.sha1Hex(password + passwordSalt);
+    }
 }
