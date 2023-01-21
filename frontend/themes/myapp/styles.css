@@ -1,5 +1,11 @@
 @import url('./main-layout.css');
-@import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');    html {
+@import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
+@font-face{
+      font-family: "My Font";
+      src: url('frontend/themes/myapp/fonts/Lastwaerk regular.ttf') format("myfont");
+}
+
+html {
       --lumo-shade-5pct: rgba(33, 33, 33, 0.05);
       --lumo-shade-10pct: rgba(33, 33, 33, 0.1);
       --lumo-shade-20pct: rgba(33, 33, 33, 0.2);
@@ -24,5 +30,17 @@
       --lumo-success-color: hsl(159, 76%, 57%);
       --lumo-success-contrast-color: hsl(159, 29%, 10%);
       --lumo-success-text-color: hsl(159, 61%, 40%);
-
     }
+
+h1 {
+      color: #C33518;
+}
+
+h2 {
+      color: #D64F00FF;
+}
+
+* {
+      font-family: "My Font", "myfont", monospace;
+      //font-size: 1rem;
+}

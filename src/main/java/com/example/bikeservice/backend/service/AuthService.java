@@ -1,12 +1,11 @@
 package com.example.bikeservice.backend.service;
 
-import com.example.bikeservice.backend.entity.Job;
-import com.example.bikeservice.ui.HomeView;
+import com.example.bikeservice.ui.general.HomeView;
 import com.example.bikeservice.ui.MainView;
 import com.example.bikeservice.backend.entity.Role;
 import com.example.bikeservice.backend.entity.User;
 import com.example.bikeservice.backend.repository.UserRepository;
-import com.example.bikeservice.ui.LogoutView;
+import com.example.bikeservice.ui.general.LogoutView;
 import com.example.bikeservice.ui.admin.AdminView;
 import com.example.bikeservice.ui.admin.AllOrderView;
 import com.example.bikeservice.ui.admin.ServiceView;

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -25,28 +26,22 @@ public class CustomerOrder {
 
     private String client;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="clientId",referencedColumnName="username", insertable=false, updatable=false)
-//    private User client;
+    private String employee;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="employeeId",referencedColumnName="username", insertable=false, updatable=false)
-//    private User employee;
+    private LocalDate orderDate;
+    private LocalDate pickupDate;
 
     public CustomerOrder(String name, Status status, String client) {
         this.name = name;
         this.status = status;
         this.client = client;
+        this.orderDate = LocalDate.now();
+        this.pickupDate = LocalDate.now().plusDays(5);
     }
 
     public CustomerOrder(Long id) {
         this.id = id;
     }
-
-//    public CustomerOrder(String name, User client) {
-//        this.name = name;
-//        this.client = client;
-//    }
 
     public String getName() {
         return name;
@@ -64,28 +59,19 @@ public class CustomerOrder {
         this.status = status;
     }
 
-//    public User getClient() {
-//        return client;
-//    }
-//
-//    public void setClient(User client) {
-//        this.client = client;
-//    }
-
-//    public User getEmployee() {
-//        return employee;
-//    }
-//
-//    public void setEmployee(User employee) {
-//        this.employee = employee;
-//    }
-
-
     public String getClient() {
         return client;
     }
 
     public void setClient(String client) {
         this.client = client;
+    }
+
+    public String getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(String employee) {
+        this.employee = employee;
     }
 }

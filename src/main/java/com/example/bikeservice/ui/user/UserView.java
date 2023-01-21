@@ -3,7 +3,6 @@ package com.example.bikeservice.ui.user;
 import com.example.bikeservice.backend.entity.User;
 import com.example.bikeservice.backend.repository.UserRepository;
 import com.example.bikeservice.backend.service.OrderService;
-import com.example.bikeservice.ui.LoginView;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

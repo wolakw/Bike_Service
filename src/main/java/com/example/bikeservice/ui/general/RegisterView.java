@@ -1,4 +1,4 @@
-package com.example.bikeservice.ui;
+package com.example.bikeservice.ui.general;
 
 import com.example.bikeservice.backend.service.AuthService;
 import com.vaadin.flow.component.Component;
@@ -36,7 +36,7 @@ public class RegisterView extends VerticalLayout {
                         password1.getValue(),
                         password2.getValue()
                 )),new Button("Log in", event -> {
-                    UI.getCurrent().navigate("login");
+                    UI.getCurrent().navigate("");
                 }))
         );
         setAlignItems(Alignment.CENTER);

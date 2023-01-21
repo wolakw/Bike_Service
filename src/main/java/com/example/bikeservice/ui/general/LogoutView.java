@@ -1,4 +1,4 @@
-package com.example.bikeservice.ui;
+package com.example.bikeservice.ui.general;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
