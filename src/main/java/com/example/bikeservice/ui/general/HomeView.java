@@ -1,6 +1,7 @@
 package com.example.bikeservice.ui.general;
 
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -8,10 +9,13 @@ import com.vaadin.flow.router.Route;
 @Route(value = "home")
 @PageTitle("Home")
 public class HomeView extends VerticalLayout {
-
+Image welcome = new Image("images/welcome.png", "welcome");
     public HomeView() {
         add (
-                new H1("Welcome")
+                welcome
         );
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.START);
+        setSizeFull();
     }
 }
