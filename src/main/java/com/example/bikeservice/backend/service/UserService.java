@@ -55,4 +55,14 @@ public class UserService implements CrudListener<User> {
         }
         return users2;
     }
+
+    public boolean findUser(String username) {
+        Collection<User> users = findAll();
+        for (User u : users) {
+            if(u.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

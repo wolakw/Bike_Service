@@ -1,6 +1,8 @@
 package com.example.bikeservice.ui.general;
 
+import com.example.bikeservice.backend.repository.UserRepository;
 import com.example.bikeservice.backend.service.AuthService;
+import com.example.bikeservice.backend.service.UserService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;
@@ -18,14 +20,16 @@ import com.vaadin.flow.router.Route;
 @Route("register")
 public class RegisterView extends VerticalLayout {
     private final AuthService authService;
+    private final UserService service;
     TextField firstName = new TextField("First name");
     TextField lastName = new TextField("Last name");
     TextField username = new TextField("Username");
     PasswordField password1 = new PasswordField("Password");
     PasswordField password2 = new PasswordField("Confirm Password");
 
-    public RegisterView(AuthService authService) {
+    public RegisterView(AuthService authService, UserService userService) {
         this.authService = authService;
+        this.service =  userService;
         add(
                 new Image("images/logo1.png", "logo1"),
                 new H1("Register"),
@@ -66,6 +70,8 @@ public class RegisterView extends VerticalLayout {
             Notification.show("Password don't match");
         } else if (username.trim().isEmpty()) {
             Notification.show("Enter username");
+        } else if (service.findUser(username)) {
+            Notification.show("Username isn't available");
         } else {
             authService.register(firstname, lastname, username, password1);
             setClear();
