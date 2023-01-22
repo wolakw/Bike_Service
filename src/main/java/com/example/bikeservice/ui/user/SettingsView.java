@@ -4,6 +4,7 @@ import com.example.bikeservice.backend.entity.User;
 import com.example.bikeservice.backend.repository.UserRepository;
 import com.example.bikeservice.backend.service.AuthService;
 import com.example.bikeservice.backend.service.UserService;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
@@ -31,6 +32,7 @@ public class SettingsView extends VerticalLayout {
     private PasswordField oldPassword = new PasswordField("Old Password");
     private PasswordField newPassword1 = new PasswordField("New Password");
     private PasswordField newPassword2 = new PasswordField(" Confirm password");
+    private PasswordField delete = new PasswordField("Password");
 
 
     public SettingsView(UserService service, AuthService authService) {
@@ -52,8 +54,12 @@ public class SettingsView extends VerticalLayout {
                         oldPassword.getValue(),
                         newPassword1.getValue(),
                         newPassword2.getValue()
-                )))
-
+                ))),
+                new H1("Delete your account"),
+                delete,
+                new Button("Delete account", event -> deleteAcc(
+                        delete.getValue()
+                ))
         );
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.START);
@@ -74,6 +80,18 @@ public class SettingsView extends VerticalLayout {
             authService.changePassword(user,newpassword1);
             Notification.show("Password changed");
             setClear();
+        }
+    }
+
+    public void deleteAcc(String password) {
+        if (!user.checkPassword(password)) {
+            Notification.show("Password isn't correct");
+        } else {
+            UI.getCurrent().getPage().setLocation("login");
+            userService.delete(user);
+            VaadinSession.getCurrent().getSession().invalidate();
+            VaadinSession.getCurrent().close();
+            Notification.show("Account deleted");
         }
     }
 
