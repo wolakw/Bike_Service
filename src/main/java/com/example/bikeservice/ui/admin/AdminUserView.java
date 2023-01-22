@@ -27,7 +27,7 @@ public class AdminUserView extends VerticalLayout {
         var crud = new GridCrud<>(User.class);
         crud.setFindAllOperation(service::findAll);
         crud.setAddOperationVisible(false);
-        crud.getGrid().setColumns("id", "firstName", "lastName", "username", "role", "passwordSalt", "passwordHash");
+        crud.getGrid().setColumns("id", "firstName", "lastName", "username", "role", "passwordHash");
         crud.getCrudFormFactory().setVisibleProperties("firstName", "lastName", "username", "role");
         add(
                 crud,

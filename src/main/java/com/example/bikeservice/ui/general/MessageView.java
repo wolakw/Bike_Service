@@ -28,7 +28,7 @@ public class MessageView extends VerticalLayout {
     List<MessageListItem> messageList = new ArrayList<>();
     private User user = VaadinSession.getCurrent().getAttribute(User.class);
     TextField input = new TextField("Type in your message");
-
+    HorizontalLayout layout = new HorizontalLayout();
     MessageView() {
         add(
                 list,
@@ -36,6 +36,9 @@ public class MessageView extends VerticalLayout {
                         input.getValue()
                 )))
         );
+        setAlignItems(Alignment.STRETCH);
+        setJustifyContentMode(JustifyContentMode.END);
+        setSizeFull();
     }
 
     public void sendMessage(String message1) {
